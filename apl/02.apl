@@ -1,5 +1,5 @@
 ﻿ solution←{
-     gms←,/⎕CSV⍠'Separator' ' '⊢⍵ ⍬ 4
+     gms←,/⎕CSV⍠'Separator' ' '⊢⍵ ⍬ 1
      perms←('A' 'B' 'C',⍤(∘.,)'X' 'Y' 'Z')
      get←{⍺⌷⍨0 1+∊⍸(⊂⍵)⍷⍺}
 
