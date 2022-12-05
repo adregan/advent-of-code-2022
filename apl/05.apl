@@ -7,7 +7,7 @@
          s←⍺
          (amt from to)←⊃(m ms)←1(↑,⊂⍤↓)⍵
          (cargo rest)←amt∘(↑,⍥⊂↓)⌽(from∘⊃)s
-         updateTo←(to⊃s),cargo
+         updateTo←(to⊃s),(⍺⍺ cargo)
 
          s[to]←⊂updateTo
          s[from]←⊂⌽rest
@@ -16,5 +16,6 @@
          s ∇ ms
      }
 
-     state crane moves
+     ⎕←'part one: ',⊢⌿¨state⊢crane moves
+     ⎕←'part two: ',⊢⌿¨state⌽∘⊢crane moves
  }
