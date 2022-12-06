@@ -1,10 +1,9 @@
 ﻿ solution←{
-     (s m)←((×≢¨)⊆⊢)⊃⎕NGET ⍵ 1
-     state←⌽¨{(×≢¨⍵)/⍵}(∊⎕A∘(∊⍨⊆⊢))¨,⌿↑¯1↓s
-     moves←(⍎¨⎕D∘(∊⍨⊆⊢))¨m
+     (state procs)←((×≢¨)⊆⊢)⊃⎕NGET ⍵ 1
+     state←⌽¨{(×≢¨⍵)/⍵}(∊⎕A∘(∊⍨⊆⊢))¨,⌿↑¯1↓state
+     procs←(⍎¨⎕D∘(∊⍨⊆⊢))¨procs
 
      update←{
-         ⍝ ⍺ is state ⍵ is a procedure
          s←⍺
          (move from to)←⍵
          (cargo stack)←(-move)∘(↑,⍥⊂↓)from⊃⊢s
@@ -14,13 +13,11 @@
      }
 
      crane←{
-         ⍝ ⍺⍺ determines moving order
-         (m ms)←1(↑,⊂⍤↓)⍵
-         s←⍺ ⍺⍺ update m
-         0=≢ms:s
-         s ∇ ms
+         0=≢⍵:⍺
+         s←⍺ ⍺⍺ update⊃⍵
+         s ∇ 1↓⍵
      }
 
-     ⎕←'part one: ',⊢/¨state⌽crane moves
-     ⎕←'part two: ',⊢/¨state⊢crane moves
+     ⎕←'part one: ',⊢/¨state⌽crane procs
+     ⎕←'part two: ',⊢/¨state⊢crane procs
  }
